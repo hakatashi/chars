@@ -22,5 +22,8 @@
   "bugs": {
     "url": "https://github.com/hakatashi/chars/issues"
   },
-  "homepage": "https://github.com/hakatashi/chars#readme"
+  "homepage": "https://github.com/hakatashi/chars#readme",
+  "devDependencies": {
+    "mocha": "^2.3.4"
+  }
 }
