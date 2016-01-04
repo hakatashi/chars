@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/hakatashi/chars.svg)](https://travis-ci.org/hakatashi/chars)
 
-“Semmantically-correct" JavaScript module to split string into array of characters.
+“Semmantically-correct” JavaScript module to split string into array of characters.
 
 ## About
 
