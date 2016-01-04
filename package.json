@@ -1,0 +1,26 @@
+{
+  "name": "chars",
+  "version": "1.0.0",
+  "description": "“Semmantically-correct\" JavaScript module to split string into array of characters.",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hakatashi/chars.git"
+  },
+  "keywords": [
+    "string",
+    "split",
+    "character",
+    "unicode",
+    "i18n"
+  ],
+  "author": "Koki Takahashi",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/hakatashi/chars/issues"
+  },
+  "homepage": "https://github.com/hakatashi/chars#readme"
+}
