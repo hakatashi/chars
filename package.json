@@ -30,5 +30,8 @@
     "gulp-mocha": "^2.2.0",
     "livescript": "^1.4.0",
     "mocha": "^2.3.4"
+  },
+  "dependencies": {
+    "xtend": "^4.0.1"
   }
 }
