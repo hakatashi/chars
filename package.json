@@ -4,7 +4,7 @@
   "description": "“Semmantically-correct” JavaScript module to split string into array of characters.",
   "main": "index.js",
   "scripts": {
-    "test": "mocha"
+    "test": "gulp"
   },
   "repository": {
     "type": "git",
