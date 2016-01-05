@@ -19,46 +19,46 @@ run = (options) ->
 describe 'Basic Options' ->
   It 'basically works' ->
     assets :=
-      * * ''
-        * []
-      * * \Alice
-        * <[A l i c e]>
-      * * \アリス
-        * <[ア リ ス]>
-      * * \أليس
-        * <[أ ل ي س]>
+      * ''
+        []
+      * \Alice
+        <[A l i c e]>
+      * \アリス
+        <[ア リ ス]>
+      * \أليس
+        <[أ ل ي س]>
 
     run!
 
   describe 'Surrogate Pairs' ->
     It 'handles surrogate pairs as one characters' ->
       assets :=
-        * * \𝟘𝟙𝟚𝟛
-          * <[𝟘 𝟙 𝟚 𝟛]>
-        * * \𠮷野家
-          * <[𠮷 野 家]>
+        * \𝟘𝟙𝟚𝟛
+          <[𝟘 𝟙 𝟚 𝟛]>
+        * \𠮷野家
+          <[𠮷 野 家]>
 
       run!
 
     It 'handles unpaired surrogate pairs as separated characters' ->
       assets :=
         # high-only
-        * * 'foo\uDA3Cbar'
-          * <[f o o \uDA3C b a r]>
+        * 'foo\uDA3Cbar'
+          <[f o o \uDA3C b a r]>
         # low-only
-        * * 'foo\uDDC0bar'
-          * <[f o o \uDDC0 b a r]>
+        * 'foo\uDDC0bar'
+          <[f o o \uDDC0 b a r]>
         # low and high
-        * * 'foo\uDDC0\uDA3Cbar'
-          * <[f o o \uDDC0 \uDA3C b a r]>
+        * 'foo\uDDC0\uDA3Cbar'
+          <[f o o \uDDC0 \uDA3C b a r]>
         # succession of high surrogate
-        * * 'foo\uDA3C\uD842\uDFB7bar'
-          * <[f o o \uDA3C \uD842\uDFB7 b a r]>
+        * 'foo\uDA3C\uD842\uDFB7bar'
+          <[f o o \uDA3C \uD842\uDFB7 b a r]>
         # succession of low surrogate
-        * * 'foo\uD842\uDFB7\uDDC0bar'
-          * <[f o o \uD842\uDFB7 \uDDC0 b a r]>
+        * 'foo\uD842\uDFB7\uDDC0bar'
+          <[f o o \uD842\uDFB7 \uDDC0 b a r]>
         # string terminating with high surrogate
-        * * 'foo\uDA3C'
-          * <[f o o \uDA3C]>
+        * 'foo\uDA3C'
+          <[f o o \uDA3C]>
 
       run!
