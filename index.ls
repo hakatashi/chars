@@ -33,6 +33,7 @@ module.exports = (string, options = {}) ->
     ### Surrogate Pairs ###
 
     if options.surrogate-pair
+
       if char-code |> is-low-surrogate
         # Read current buffer and push surrogate pair if possible
 
@@ -45,18 +46,21 @@ module.exports = (string, options = {}) ->
           }
           ptr++
           continue
+
         else
-          next-char-code = string[ptr + 1]
+          next-char = string[ptr + 1]
+          next-char-code = string.char-code-at ptr + 1
 
           # If next char is high surrogate, it is always valid surrogate pair
           if next-char-code |> is-high-surrogate
             result.push {
               type: \surrogatePair
-              char
+              char: char + next-char
               -broken
             }
             ptr += 2
             continue
+
           else
             result.push {
               type: \surrogatePair
