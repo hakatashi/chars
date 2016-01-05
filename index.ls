@@ -11,12 +11,12 @@ module.exports = (string, options = {}) ->
   string = string.to-string! if typeof! string isnt \String
 
   default-options = {
-   +surrogate-pair
-   +ids
-   +ivs
-   +combining-mark
-   +myanmar-vowel
-   -detailed
+    +surrogate-pair
+    +ids
+    +ivs
+    +combining-mark
+    +myanmar-vowel
+    -detailed
   }
 
   options = extend {}, default-options, options
@@ -41,7 +41,7 @@ module.exports = (string, options = {}) ->
           result.push {
             type: \surrogatePair
             char
-           +broken
+            +broken
           }
           ptr++
           continue
@@ -53,7 +53,7 @@ module.exports = (string, options = {}) ->
             result.push {
               type: \surrogatePair
               char
-             -broken
+              -broken
             }
             ptr += 2
             continue
@@ -61,7 +61,7 @@ module.exports = (string, options = {}) ->
             result.push {
               type: \surrogatePair
               char
-             +broken
+              +broken
             }
             ptr++
             continue
@@ -71,7 +71,7 @@ module.exports = (string, options = {}) ->
         result.push {
           type: \surrogatePair
           char
-         +broken
+          +broken
         }
         ptr++
         continue
@@ -82,10 +82,11 @@ module.exports = (string, options = {}) ->
     result.push {
       type: \normal
       char
-     -broken
+      -broken
     }
+    ptr++
 
-  if optioins.detailed
+  if options.detailed
     return result
   else
     # Convert to normal string array

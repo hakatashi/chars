@@ -1,6 +1,6 @@
 require! {
   chai: {expect}
-  './': chars
+  '../': chars
 }
 
 It = global.it
