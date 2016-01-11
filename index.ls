@@ -1,16 +1,19 @@
 require! {
   'xtend': extend
+  'general-category'
 }
 
 is-surrogate = -> 0xD800 <= it <= 0xDFFF
 is-low-surrogate = -> 0xD800 <= it <= 0xDBFF
 is-high-surrogate = -> 0xDC00 <= it <= 0xDFFF
 
+# Transpiled /(?=.)/u by Babel
+split-string-regexp = /(?=(?:[\0-\t\x0B\f\x0E-\u2027\u202A-\uD7FF\uE000-\uFFFF]|[\uD800-\uDBFF][\uDC00-\uDFFF]|[\uD800-\uDBFF](?![\uDC00-\uDFFF])|(?:[^\uD800-\uDBFF]|^)[\uDC00-\uDFFF]))/
+
 class Splitter
   default-options = {
     +surrogate-pair
     +ids
-    +ivs
     +combining-mark
     +myanmar-vowel
     -detailed
@@ -27,6 +30,8 @@ class Splitter
         string.to-string!
 
   split: ->
+    @chars = @string.split split-string-regexp
+
     @tokens = []
     @ptr = 0
 
@@ -59,9 +64,14 @@ class Splitter
   # Push token to tokens slot acording with current options
   push-token: (token) ->
     if @options.detailed
+      token.type = [token.type]
       @tokens.push token
     else
       @tokens.push token.char
+
+  # Append modifier to the last pushed token.
+  # If no recent pushed token exists, it will create broken modifier token
+  append-modifier: (modifier) ->
 
   # Surrogate Pairs
   read-surrogate-pair: ->
