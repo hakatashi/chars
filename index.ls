@@ -1,6 +1,7 @@
 require! {
   'xtend': extend
   'core-js/library/fn/array/from': array-from
+  'core-js/library/fn/string/code-point-at'
   'general-category'
 }
 
@@ -35,14 +36,14 @@ class Splitter
     # Iterate pointer through string and process characters
     while @ptr < @chars.length
       @char = @chars[@ptr]
-      @char-code = @char.char-code-at!
+      @char-code = @char |> code-point-at
 
       if @ptr + 1 >= @chars.length
         @next-char = null
         @next-char-code = null
       else
         @next-char = @chars[@ptr + 1]
-        @next-char-code = @next-char.char-code-at!
+        @next-char-code = @next-char |> code-point-at
 
       # Fallback
       # No special rule matched. Just push normal character.
