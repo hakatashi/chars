@@ -1,6 +1,6 @@
 require! {
   'xtend': extend
-  'array-from'
+  'core-js/library/fn/array/from': array-from
   'general-category'
 }
 
