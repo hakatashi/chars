@@ -63,6 +63,16 @@ describe 'Basic Options' ->
 
       run!
 
+  describe 'Combining Marks' ->
+    It 'handles basic combining marks as appended character' ->
+      assets :=
+        * 'cafe\u0301'
+          <[c a f e\u0301]>
+        * 'de\u0301po\u0302t'
+          <[d e\u0301 p o\u0302 t]>
+
+      run!
+
 describe '`detailed Option`' ->
   It 'returns detailed token array instead of plain text' ->
     assets :=
