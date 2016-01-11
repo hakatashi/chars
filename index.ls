@@ -1,14 +1,12 @@
 require! {
   'xtend': extend
   'general-category'
+  './split-string-regexp'
 }
 
 is-surrogate = -> 0xD800 <= it <= 0xDFFF
 is-low-surrogate = -> 0xD800 <= it <= 0xDBFF
 is-high-surrogate = -> 0xDC00 <= it <= 0xDFFF
-
-# Transpiled /(?=.)/u by Babel
-split-string-regexp = /(?=(?:[\0-\t\x0B\f\x0E-\u2027\u202A-\uD7FF\uE000-\uFFFF]|[\uD800-\uDBFF][\uDC00-\uDFFF]|[\uD800-\uDBFF](?![\uDC00-\uDFFF])|(?:[^\uD800-\uDBFF]|^)[\uDC00-\uDFFF]))/
 
 class Splitter
   default-options = {
