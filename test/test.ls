@@ -70,25 +70,25 @@ describe '`detailed Option`' ->
         []
       * \アリス
         [
-        * type: [\normal]
+        * type: []
           char: \ア
           broken: false
-        * type: [\normal]
+        * type: []
           char: \リ
           broken: false
-        * type: [\normal]
+        * type: []
           char: \ス
           broken: false
         ]
       * \𠮷野家
         [
-        * type: [\surrogatePair]
+        * type: []
           char: \𠮷
           broken: false
-        * type: [\normal]
+        * type: []
           char: \野
           broken: false
-        * type: [\normal]
+        * type: []
           char: \家
           broken: false
         ]

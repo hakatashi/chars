@@ -1,7 +1,7 @@
 require! {
   'xtend': extend
+  'array-from'
   'general-category'
-  './split-string-regexp'
 }
 
 is-surrogate = -> 0xD800 <= it <= 0xDFFF
@@ -10,7 +10,6 @@ is-high-surrogate = -> 0xDC00 <= it <= 0xDFFF
 
 class Splitter
   default-options = {
-    +surrogate-pair
     +ids
     +combining-mark
     +myanmar-vowel
@@ -28,32 +27,27 @@ class Splitter
         string.to-string!
 
   split: ->
-    @chars = @string.split split-string-regexp
+    @chars = array-from @string
 
     @tokens = []
     @ptr = 0
 
     # Iterate pointer through string and process characters
-    while @ptr < @string.length
-      @char = @string[@ptr]
-      @char-code = @string.char-code-at @ptr
+    while @ptr < @chars.length
+      @char = @chars[@ptr]
+      @char-code = @char.char-code-at!
 
-      if @ptr + 1 >= @string.length
+      if @ptr + 1 >= @chars.length
         @next-char = null
         @next-char-code = null
       else
-        @next-char = @string[@ptr + 1]
-        @next-char-code = @string.char-code-at @ptr + 1
-
-      # Surrogate Pair
-      if @options.surrogate-pair
-        read-char = @read-surrogate-pair!
-        continue if read-char
+        @next-char = @chars[@ptr + 1]
+        @next-char-code = @next-char.char-code-at!
 
       # Fallback
       # No special rule matched. Just push normal character.
       @push-token {
-        type: \normal
+        type: null
         char: @char
         -broken
       }
@@ -62,7 +56,11 @@ class Splitter
   # Push token to tokens slot acording with current options
   push-token: (token) ->
     if @options.detailed
-      token.type = [token.type]
+      if token.type
+        token.type = [token.type]
+      else
+        token.type = []
+
       @tokens.push token
     else
       @tokens.push token.char
@@ -70,53 +68,6 @@ class Splitter
   # Append modifier to the last pushed token.
   # If no recent pushed token exists, it will create broken modifier token
   append-modifier: (modifier) ->
-
-  # Surrogate Pairs
-  read-surrogate-pair: ->
-    if @char-code |> is-low-surrogate
-      # Read current buffer and push surrogate pair if possible
-
-      # If string is terminating and no high surrogate can be seen
-      unless @next-char
-        @push-token {
-          type: \surrogatePair
-          char: @char
-          +broken
-        }
-        @ptr++
-        return true
-
-      else
-        # If next char is high surrogate, it is always valid surrogate pair
-        if @next-char-code |> is-high-surrogate
-          @push-token {
-            type: \surrogatePair
-            char: @char + @next-char
-            -broken
-          }
-          @ptr += 2
-          return true
-
-        else
-          @push-token {
-            type: \surrogatePair
-            char: @char
-            +broken
-          }
-          @ptr++
-          return true
-
-    # If high surrogate is seen before low surrogate, it is invalid.
-    if @char-code |> is-high-surrogate
-      @push-token {
-        type: \surrogatePair
-        char: @char
-        +broken
-      }
-      @ptr++
-      return true
-
-    return false
 
 module.exports = (string, options = {}) ->
   splitter = new Splitter ...
