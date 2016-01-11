@@ -10,10 +10,10 @@ var assets
 run = (options) ->
   for asset in assets
     if options
-      expect chars asset.0
+      expect chars asset.0, options
       .to.deep.equal asset.1
     else
-      expect chars asset.0, options
+      expect chars asset.0
       .to.deep.equal asset.1
 
 describe 'Basic Options' ->
@@ -62,3 +62,35 @@ describe 'Basic Options' ->
           <[f o o \uDA3C]>
 
       run!
+
+describe '`detailed Option`' ->
+  It 'returns detailed token array instead of plain text' ->
+    assets :=
+      * ''
+        []
+      * \アリス
+        [
+        * type: [\normal]
+          char: \ア
+          broken: false
+        * type: [\normal]
+          char: \リ
+          broken: false
+        * type: [\normal]
+          char: \ス
+          broken: false
+        ]
+      * \𠮷野家
+        [
+        * type: [\surrogatePair]
+          char: \𠮷
+          broken: false
+        * type: [\normal]
+          char: \野
+          broken: false
+        * type: [\normal]
+          char: \家
+          broken: false
+        ]
+
+    run {+detailed}
