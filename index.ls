@@ -5,10 +5,6 @@ require! {
   'general-category'
 }
 
-is-surrogate = -> 0xD800 <= it <= 0xDFFF
-is-low-surrogate = -> 0xD800 <= it <= 0xDBFF
-is-high-surrogate = -> 0xDC00 <= it <= 0xDFFF
-
 class Splitter
   default-options = {
     +ids
