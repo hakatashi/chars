@@ -9,7 +9,6 @@ class Splitter
   default-options = {
     +ids
     +combining-mark
-    +myanmar-vowel
     -detailed
   }
 

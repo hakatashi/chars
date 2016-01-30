@@ -71,6 +71,14 @@ describe 'Basic Options' ->
         * 'de\u0301po\u0302t'
           <[d e\u0301 p o\u0302 t]>
 
+        # Myanmar vowels
+        * 'နေပြည်တော်'
+          <[နေ ပြ ည် တော်]>
+
+        # Japanese voiced sound marks
+        * 'ひらか\u3099な'
+          <[ひ ら か\u3099 な]>
+
       run!
 
 describe '`detailed Option`' ->
