@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "Split strings into array of characters by “Semmantically-correct” way.",
   "main": "index.js",
+  "files": [
+    "*.js"
+  ],
   "scripts": {
     "test": "gulp"
   },
