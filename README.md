@@ -129,8 +129,8 @@ Then, this module _choosed_ to parse IDS as character.
 Example:
 
 ```js
-> chars('⿱⿰女女女しい')
-[ '⿱⿰女女女', 'し', 'い' ]
+> chars('⿱女⿰女女しい')
+[ '⿱女⿰女女', 'し', 'い' ]
 ```
 
 You can turn this feature off by `{ids: false}`
