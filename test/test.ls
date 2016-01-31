@@ -81,6 +81,25 @@ describe 'Basic Options' ->
 
       run!
 
+  describe 'IDS' ->
+    It 'handles basic combining marks as combined character' ->
+      assets :=
+        # Unicode Standard 8.0.0 p.683
+        # http://www.unicode.org/versions/Unicode8.0.0/ch18.pdf
+        * '⿱井蛙⿱井⿰虫圭⿱井⿰虫⿱土土'
+          <[⿱井蛙 ⿱井⿰虫圭 ⿱井⿰虫⿱土土]>
+        * '⿱⿰鳥龜火⿳⿲丂彡丂彐皿⿰⿳⿻⿰日日工网丂乞⿴囗⿰⿱鹵凼邑'
+          <[⿱⿰鳥龜火 ⿳⿲丂彡丂彐皿 ⿰⿳⿻⿰日日工网丂乞 ⿴囗⿰⿱鹵凼邑]>
+
+        # Some sequences from USourceData.txt
+        # http://www.unicode.org/Public/UCD/latest/ucd/USourceData.txt
+        * '⿺辶⿳穴⿰月⿰⿲⿱幺長⿱言馬⿱幺長刂心⿱⺮⿰⿱士示隶⿱⿸厂⿰肙犬手'
+          <[⿺辶⿳穴⿰月⿰⿲⿱幺長⿱言馬⿱幺長刂心 ⿱⺮⿰⿱士示隶 ⿱⿸厂⿰肙犬手]>
+        * '⿵鬥黽⿰糹⿸厂⿳田兀土⿰⿳艹口𠕁乚⿱⿰斗斗斗⿱宀⿺辶⿱⿰王尔⿲隹貝招'
+          <[⿵鬥黽 ⿰糹⿸厂⿳田兀土⿰⿳艹口𠕁乚 ⿱⿰斗斗斗 ⿱宀⿺辶⿱⿰王尔⿲隹貝招]>
+
+      run!
+
 describe '`detailed Option`' ->
   It 'returns detailed token array instead of plain text' ->
     assets :=
