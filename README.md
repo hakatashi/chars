@@ -12,8 +12,8 @@ Well, [esrever's README](https://github.com/mathiasbynens/esrever#why-not-just-u
 sufficiently explains why, but I can simply answer that
 **the chars of JavaScript is not just the chars of Unicode.**
 
-In Unicodes, a pair of surrogates constitutes (In other word, “expresses”) one character by itself.
-In JavaScript, thanks to [the UCS-2-like behavior,](https://mathiasbynens.be/notes/javascript-encoding)
+In Unicode, a pair of surrogates constitutes (In other word, “expresses”) one character by itself.
+In JavaScript, thanks to [its UCS-2-like behavior,](https://mathiasbynens.be/notes/javascript-encoding)
 the pair is treated as two characters.
 
 ```js
