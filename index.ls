@@ -12,6 +12,21 @@ class Splitter
     -detailed
   }
 
+  ids-number-of-arguments = {
+    '⿰': 2
+    '⿱': 2
+    '⿲': 3
+    '⿳': 3
+    '⿴': 2
+    '⿵': 2
+    '⿶': 2
+    '⿷': 2
+    '⿸': 2
+    '⿹': 2
+    '⿺': 2
+    '⿻': 2
+  }
+
   (string, options) ->
     @options = extend {}, default-options, options
 
@@ -44,6 +59,10 @@ class Splitter
         result = @read-combining-mark!
         continue if result is true
 
+      if @options.ids
+        result = @read-ids!
+        continue if result is true
+
       # Fallback
       # No special rule matched. Just push normal character.
       @push-token {
@@ -68,6 +87,60 @@ class Splitter
       return true
 
     return false
+
+  read-ids: ->
+    return false unless 0x2FF0 <= @char-code <= 0x2FFB
+
+    result = @read-partial-ids @ptr
+
+    ids = @chars[@ptr til result.ptr].join ''
+
+    @push-token {
+      type: \ids
+      char: ids
+      result.broken
+    }
+    @ptr = result.ptr
+
+    return true
+
+  # Recieve starting point of ids token and returns the object with following structure
+  #   ptr: ending point + 1 of that token
+  #   broken: boolean whether reading token is broken (= incomplete)
+  read-partial-ids: (ptr) ->
+    if ptr >= @chars.length
+      return {
+        ptr: @chars.length
+        +broken
+      }
+
+    char = @chars[ptr]
+    argument-length = ids-number-of-arguments[char]
+
+    # Just a character, not composed one
+    if argument-length is undefined
+      return {
+        ptr: ptr + 1
+        -broken
+      }
+
+    else
+      # Skip current pointer once to read through IDC
+      current-ptr = ptr + 1
+      broken = false
+
+      for i in [0 til argument-length]
+        result = @read-partial-ids current-ptr
+        current-ptr = result.ptr
+
+        if result.broken
+          broken = true
+          break
+
+      return {
+        ptr: current-ptr
+        broken
+      }
 
   # Push token to tokens slot acording with current options
   push-token: (token) ->
