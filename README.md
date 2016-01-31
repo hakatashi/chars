@@ -4,7 +4,7 @@
 
 Split strings into array of characters by “Semmantically-correct” way.
 
-This module inspired by [esrever](https://www.npmjs.com/package/esrever).
+This module is inspired by [esrever](https://www.npmjs.com/package/esrever).
 
 ## Why not just use `string.split('')`!?!?!?!?
 
