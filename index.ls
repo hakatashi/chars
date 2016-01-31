@@ -2,7 +2,7 @@ require! {
   'xtend': extend
   'core-js/library/fn/array/from': array-from
   'core-js/library/fn/string/code-point-at'
-  'general-category'
+  'general-category/latest': general-category
 }
 
 class Splitter
