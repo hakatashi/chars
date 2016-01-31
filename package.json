@@ -1,7 +1,7 @@
 {
   "name": "chars",
   "version": "1.0.0",
-  "description": "“Semmantically-correct” JavaScript module to split string into array of characters.",
+  "description": "Split strings into array of characters by “Semmantically-correct” way.",
   "main": "index.js",
   "scripts": {
     "test": "gulp"

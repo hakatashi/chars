@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/hakatashi/chars.svg)](https://travis-ci.org/hakatashi/chars)
 
-“Semmantically-correct” JavaScript module to split string into array of characters.
+Split strings into array of characters by “Semmantically-correct” way.
 
 This module inspired by [esrever](https://www.npmjs.com/package/esrever).
 
@@ -76,9 +76,13 @@ chars('cafe\u0301', {detailed: true});
 
 Currently this module recognizes the following mechanisms of Unicode.
 
+* [Surrogate Pairs](#surrogate-pairs)
+* [Combining Marks](#combining-marks)
+* [IDS](#ids-ideographic-description-sequences)
+
 ### Surrogate Pairs
 
-See section above.
+Read the section [above](#why-not-just-use-stringsplit).
 
 Parsing surrogate pairs is basic functionality of this module and
 you cannnot turn this feature off by option.
