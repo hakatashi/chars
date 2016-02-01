@@ -80,6 +80,11 @@ Currently this module recognizes the following mechanisms of Unicode.
 * [Combining Marks](#combining-marks)
 * [IDS](#ids-ideographic-description-sequences)
 
+Upcoming:
+
+* Kharoshthi Virama
+* Prepended Concatenation Marks
+
 ### Surrogate Pairs
 
 Read the section [above](#why-not-just-use-stringsplit).
