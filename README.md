@@ -82,6 +82,8 @@ Currently this module recognizes the following mechanisms of Unicode.
 
 Upcoming:
 
+* Zero-Width Joiner
+* Regional Indicator Symbols
 * Kharoshthi Virama
 * Prepended Concatenation Marks
 
@@ -97,6 +99,12 @@ If you don't need even this feature, use `string.split('')`.
 
 Some Unicode characters works as “modifier” and append additional parts
 to the preceding character. These characters should be semantically one combined character.
+
+This characters include:
+
+* [Diacritics](https://en.wikipedia.org/wiki/Diacritic)
+* [Variation Selector](https://en.wikipedia.org/wiki/Variation_Selectors_(Unicode_block))
+* [Ideographic Variation Selector](http://unicode.org/reports/tr37/)
 
 Example:
 
