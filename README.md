@@ -98,13 +98,21 @@ If you don't need even this feature, use `string.split('')`.
 ### Combining Marks
 
 Some Unicode characters works as “modifier” and append additional parts
-to the preceding character. These characters should be semantically one combined character.
+to the preceding character. These characters should be semantically
+interpreted as one combined character.
 
-This characters include:
+These characters contain:
 
 * [Diacritics](https://en.wikipedia.org/wiki/Diacritic)
-* [Variation Selector](https://en.wikipedia.org/wiki/Variation_Selectors_(Unicode_block))
-* [Ideographic Variation Selector](http://unicode.org/reports/tr37/)
+
+* [Variation Selectors](https://en.wikipedia.org/wiki/Variation_Selectors_(Unicode_block))
+
+    Especialy as...
+
+    * Emoji Variation Selectors
+    * [Ideographic Variation Selectors](http://unicode.org/reports/tr37/)
+    
+* [Emoji Keycaps](http://www.fileformat.info/info/unicode/char/20e3/index.htm)
 
 Example:
 
