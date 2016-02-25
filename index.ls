@@ -1,5 +1,6 @@
 require! {
   'xtend': extend
+  'array-unique'
   'core-js/library/fn/array/from': array-from
   'core-js/library/fn/string/code-point-at'
   'general-category/latest': general-category
@@ -210,6 +211,24 @@ class Splitter
 
         last-token.char += modifier.char
         last-token.broken ||= modifier.broken
+
+  # Combine the current top-on-the-stack character with the preceding character.
+  combine-with-preceding-char: ->
+    return if @tokens.length < 2
+
+    unless @options.detailed
+      @tokens[* - 2] += delete @tokens[* - 1]
+
+    else
+      last-token = delete @tokens[* - 1]
+
+      @tokens[* - 2]
+        ..type ++= last-token.type
+        ..type = array-unique @tokens[* - 2]
+
+        ..char += last-token.char
+
+        ..broken ||= last-token.broken
 
 module.exports = (string, options = {}) ->
   splitter = new Splitter ...
