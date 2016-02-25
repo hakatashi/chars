@@ -226,10 +226,10 @@ class Splitter
     return if @tokens.length < 2
 
     unless @options.detailed
-      @tokens[* - 2] += delete @tokens[* - 1]
+      @tokens[* - 2] += @tokens.pop!
 
     else
-      last-token = delete @tokens[* - 1]
+      last-token = @tokens.pop!
 
       @tokens[* - 2]
         ..type ++= last-token.type
