@@ -9,6 +9,7 @@ class Splitter
   default-options = {
     +ids
     +combining-mark
+    +kharoshthi-virama
     -detailed
   }
 
@@ -54,6 +55,10 @@ class Splitter
       else
         @next-char = @chars[@ptr + 1]
         @next-char-code = @next-char |> code-point-at
+
+      if @options.kharoshthi-virama
+        result = @read-kharoshthi-virama!
+        continue if result is true
 
       if @options.combining-mark
         result = @read-combining-mark!
@@ -141,6 +146,32 @@ class Splitter
         ptr: current-ptr
         broken
       }
+
+  # Read Kharoshthi Virama and trigger combination of Kharoshthi characters.
+  # The rules for combination is documented in Unicode Standard 8.0.0 §14.4 and
+  # the corresponding proposals for adding Kharoshthi characters, L2/02-203 R2.
+  # In short, the rule for Kharoshthi Virama is described in the following quotation
+  # from Unicode Standard 8.0.0:
+  #     When not followed by a consonant, the virama causes the preceding consonant
+  #     to be written as subscript to the left of the letter preceding it. If followed by another consonant,
+  #     the virama will trigger a combined form consisting of two or more consonants.
+  read-kharoshthi-virama: (ptr) ->
+    return false unless @char-code is 0x10A3F
+
+    # Code points for Kharoshthi Consonants are U+10A10 to U+10A33, which contains
+    # two unassigned code points for now in Unicode 8.0.0. They are reserved for future versions
+    # of Unicode and should be treated as true Kharoshthi Consonants here.
+    if @next-char isnt null and 0x10A10 <= @next-char-code <= 0x10A33
+      @append-modifier {
+        type: \kharoshthiVirama
+        char: @char + @next-char
+        -broken
+      }
+      @ptr += 2
+      return true
+
+    else
+      ...
 
   # Push token to tokens slot acording with current options
   push-token: (token) ->

@@ -111,7 +111,7 @@ These characters contain:
 
     * Emoji Variation Selectors
     * [Ideographic Variation Selectors](http://unicode.org/reports/tr37/)
-    
+
 * [Emoji Keycaps](http://www.fileformat.info/info/unicode/char/20e3/index.htm)
 
 Example:
