@@ -84,7 +84,6 @@ Upcoming:
 
 * Zero-Width Joiner
 * Regional Indicator Symbols
-* Kharoshthi Virama
 * Prepended Concatenation Marks
 
 ### Surrogate Pairs
@@ -155,3 +154,27 @@ Example:
 ```
 
 You can turn this feature off by `{ids: false}`
+
+### Kharoshthi Virama
+
+Kharosthi is an ancient script used in ancient India ([Wikipedia](https://en.wikipedia.org/wiki/Kharosthi)).
+In this script, we have to handle a strange modifier called “Kharoshthi Virama.”
+It behaves like ZWJ when the both side of the Virama is Kharoshthi consonants, and otherwise
+it modifies preceding character to be a modifier, and makes it to be written in the bottom-left
+of the character preceding it.
+It means, this character may affect the preceding character but one!
+
+Further readings:
+
+* [Unicode Standard §14](http://www.unicode.org/versions/Unicode8.0.0/ch14.pdf)
+* [Proposal for adding Kharoshthi characters in Unicode Standard](http://www.unicode.org/L2/L2002/02203r2-kharoshthi.pdf)
+
+```js
+> chars('𐨫𐨿𐨤𐨑𐨿𐨐𐨿𐨮𐨨𐨿𐨪𐨢𐨁𐨐𐨿')
+[ '𐨫𐨿𐨤', '𐨑𐨿𐨐𐨿𐨮', '𐨨𐨿𐨪', '𐨢𐨁𐨐𐨿' ]
+```
+
+Note: If you have problem for reading this script,
+just install [Noto Sans Kharoshthi](https://www.google.com/get/noto/#sans-khar) font.
+
+You can turn this feature off by `{kharoshthiVirama: false}`
