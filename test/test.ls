@@ -100,6 +100,20 @@ describe 'Basic Options' ->
 
       run!
 
+  describe 'Kharoshthi Virama' ->
+    It 'handles normally encoded Kharoshthi strings into characters' ->
+      assets :=
+        # Unicode Standard 8.0.0 Figure 14-4. Kharoshthi Rendering Example
+        * '𐨤𐨪𐨌𐨪𐨿𐨗𐨸𐨅𐨌𐨏'
+          <[𐨤 𐨪𐨌 𐨪𐨿𐨗𐨸𐨅𐨌𐨏]>
+
+        # Some examples taken from Kharoshthi character proposals to Unicode Consortium
+        # http://www.unicode.org/L2/L2002/02203r2-kharoshthi.pdf
+        * '𐨫𐨿𐨤𐨐𐨿𐨤𐨑𐨿𐨐𐨿𐨮𐨨𐨿𐨪𐨢𐨁𐨐𐨿'
+          <[𐨫𐨿𐨤 𐨐𐨿𐨤 𐨑𐨿𐨐𐨿𐨮 𐨨𐨿𐨪 𐨢𐨁𐨐𐨿]>
+
+      run!
+
 describe '`detailed Option`' ->
   It 'returns detailed token array instead of plain text' ->
     assets :=
