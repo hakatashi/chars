@@ -108,9 +108,11 @@ describe 'Basic Options' ->
           <[𐨤 𐨪𐨌 𐨪𐨿𐨗𐨸𐨅𐨌𐨏]>
 
         # Some examples taken from Kharoshthi character proposals to Unicode Consortium
+        # This string can be fully compatible with Noto Sans Kharoshthi Font and
+        # suitable for checking the actual rendering result of this minor script.
         # http://www.unicode.org/L2/L2002/02203r2-kharoshthi.pdf
-        * '𐨫𐨿𐨤𐨐𐨿𐨤𐨑𐨿𐨐𐨿𐨮𐨨𐨿𐨪𐨢𐨁𐨐𐨿'
-          <[𐨫𐨿𐨤 𐨐𐨿𐨤 𐨑𐨿𐨐𐨿𐨮 𐨨𐨿𐨪 𐨢𐨁𐨐𐨿]>
+        * '𐨫𐨿𐨤𐨑𐨿𐨐𐨿𐨮𐨨𐨿𐨪𐨢𐨁𐨐𐨿'
+          <[𐨫𐨿𐨤 𐨑𐨿𐨐𐨿𐨮 𐨨𐨿𐨪 𐨢𐨁𐨐𐨿]>
 
       run!
 
