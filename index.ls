@@ -172,7 +172,16 @@ class Splitter
       return true
 
     else
-      ...
+      @append-modifier {
+        type: \kharoshthiVirama
+        char: @char
+        -broken
+      }
+
+      @combine-with-preceding-char!
+
+      @ptr++
+      return true
 
   # Push token to tokens slot acording with current options
   push-token: (token) ->
