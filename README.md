@@ -79,6 +79,7 @@ Currently this module recognizes the following mechanisms of Unicode.
 * [Surrogate Pairs](#surrogate-pairs)
 * [Combining Marks](#combining-marks)
 * [IDS](#ids-ideographic-description-sequences)
+* [Kharoshthi Virama](#kharoshthi-virama)
 
 Upcoming:
 
@@ -157,7 +158,7 @@ You can turn this feature off by `{ids: false}`
 
 ### Kharoshthi Virama
 
-Kharosthi is an ancient script used in ancient India ([Wikipedia](https://en.wikipedia.org/wiki/Kharosthi)).
+Kharoshthi (aka Kharosthi) is an ancient script used in ancient India ([Wikipedia](https://en.wikipedia.org/wiki/Kharosthi)).
 In this script, we have to handle a strange modifier called “Kharoshthi Virama.”
 It behaves like ZWJ when the both side of the Virama is Kharoshthi consonants, and otherwise
 it modifies preceding character to be a modifier, and makes it to be written in the bottom-left
