@@ -8,13 +8,15 @@ It = global.it
 var assets
 
 run = (options) ->
-  for asset in assets
+  for [input, expected] in assets
     if options
-      expect chars asset.0, options
-      .to.deep.equal asset.1
+      result = chars input, options
     else
-      expect chars asset.0
-      .to.deep.equal asset.1
+      result = chars input
+
+    expect result
+    .to.deep.equal expected
+    .and.have.length-of expected.length
 
 describe 'Basic Options' ->
   It 'basically works' ->
