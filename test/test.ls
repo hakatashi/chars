@@ -12,6 +12,10 @@ run = (options) ->
     if options
       result = chars input, options
     else
+      # Check sanity of the test case
+      expect expected.join ''
+      .to.equal input
+
       result = chars input
 
     expect result
