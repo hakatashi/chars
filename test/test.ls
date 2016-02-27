@@ -122,6 +122,16 @@ describe 'Basic Options' ->
 
       run!
 
+  describe 'Regional Indicator Symbols' ->
+    It 'handles basic regional indicator symbols as paired character sequenses' ->
+      assets :=
+        * 'FREEDOM🇺🇸'
+          <[F R E E D O M 🇺🇸]>
+        * '🇨🇴🇴🇰-🇦-🇩🇴🇴🇩🇱🇪-🇩🇴🇴'
+          <[🇨🇴 🇴🇰 - 🇦 - 🇩🇴 🇴🇩 🇱🇪 - 🇩🇴 🇴]>
+
+      run!
+
 describe '`detailed Option`' ->
   It 'returns detailed token array instead of plain text' ->
     assets :=
