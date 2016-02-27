@@ -11,6 +11,7 @@ class Splitter
     +ids
     +combining-mark
     +kharoshthi-virama
+    +flag-sequence
     -detailed
   }
 
@@ -67,6 +68,10 @@ class Splitter
 
       if @options.ids
         result = @read-ids!
+        continue if result is true
+
+      if @options.flag-sequence
+        result = @read-flag-sequence!
         continue if result is true
 
       # Fallback
@@ -156,7 +161,7 @@ class Splitter
   #     When not followed by a consonant, the virama causes the preceding consonant
   #     to be written as subscript to the left of the letter preceding it. If followed by another consonant,
   #     the virama will trigger a combined form consisting of two or more consonants.
-  read-kharoshthi-virama: (ptr) ->
+  read-kharoshthi-virama: ->
     return false unless @char-code is 0x10A3F
 
     # Code points for Kharoshthi Consonants are U+10A10 to U+10A33, which contains
@@ -179,6 +184,34 @@ class Splitter
       }
 
       @combine-with-preceding-char!
+
+      @ptr++
+      return true
+
+  # Read Regional Indicator Symbol and pushes a paired character sequence if it makes
+  # a valid emoji flag sequence.
+  # ED-14 of UTR 51 UNICODE EMOJI defines which character sequence may be treated as
+  # a valid emoji flag sequence, and it's just a paired combiunation of Regional Indicator Symbols.
+  # http://www.unicode.org/reports/tr51/#def_emoji_flag_sequence
+  read-flag-sequence: (ptr) ->
+    return false unless 0x1F1E6 <= @char-code <= 0x1F1FF
+
+    if 0x1F1E6 <= @next-char-code <= 0x1F1FF
+      @push-token {
+        type: \flagSequence
+        char: @char + @next-char
+        -broken
+      }
+
+      @ptr += 2
+      return true
+
+    else
+      @push-token {
+        type: \flagSequence
+        char: @char
+        +broken
+      }
 
       @ptr++
       return true

@@ -123,7 +123,7 @@ describe 'Basic Options' ->
       run!
 
   describe 'Regional Indicator Symbols' ->
-    It 'handles basic regional indicator symbols as paired character sequenses' ->
+    It 'handles basic paired regional indicator symbols as a combined character sequence' ->
       assets :=
         * 'FREEDOM🇺🇸'
           <[F R E E D O M 🇺🇸]>
