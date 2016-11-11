@@ -80,12 +80,16 @@ Currently this module recognizes the following mechanisms of Unicode.
 * [Combining Marks](#combining-marks)
 * [IDS](#ids-ideographic-description-sequences)
 * [Kharoshthi Virama](#kharoshthi-virama)
+* [Regional Indicator Symbols](#regional-indicator-symbols)
 
 Upcoming:
 
 * Zero-Width Joiner
-* Regional Indicator Symbols
 * Prepended Concatenation Marks
+* Emoji Sequence
+* Adeg Adeg
+* Generic virama such as Devanagari (Hard way...!)
+* Bugenese Ligature (Includes “iya” only)
 
 ### Surrogate Pairs
 
@@ -165,11 +169,6 @@ it modifies preceding character to be a modifier, and makes it to be written in 
 of the character preceding it.
 It means, this character may affect the preceding character but one!
 
-Further readings:
-
-* [Unicode Standard §14](http://www.unicode.org/versions/Unicode8.0.0/ch14.pdf)
-* [Proposal for adding Kharoshthi characters in Unicode Standard](http://www.unicode.org/L2/L2002/02203r2-kharoshthi.pdf)
-
 ```js
 > chars('𐨫𐨿𐨤𐨑𐨿𐨐𐨿𐨮𐨨𐨿𐨪𐨢𐨁𐨐𐨿')
 [ '𐨫𐨿𐨤', '𐨑𐨿𐨐𐨿𐨮', '𐨨𐨿𐨪', '𐨢𐨁𐨐𐨿' ]
@@ -179,3 +178,20 @@ Note: If you have problem for reading this script,
 just install [Noto Sans Kharoshthi](https://www.google.com/get/noto/#sans-khar) font.
 
 You can turn this feature off by `{kharoshthiVirama: false}`
+
+#### Further readings
+
+* [Unicode Standard 8.0.0 §14 South and Central Asia-III](http://www.unicode.org/versions/Unicode8.0.0/ch14.pdf#page=11)
+* [Proposal for adding Kharoshthi characters in Unicode Standard](http://www.unicode.org/L2/L2002/02203r2-kharoshthi.pdf#page=9)
+
+## Regional Indicator Symbols
+
+Regional Indicator Symbols is a part of the emoji symbol specification,
+which is to encode a country by the combination of two-letter country codes.
+Every succeeding pairs of the Regional Indicator Symbols should be considered as
+the existing country code and therefore be one character.
+
+```js
+> chars('FREEDOM🇺🇸')
+[ 'F', 'R', 'E', 'E', 'D', 'O', 'M', '🇺🇸' ]
+```
