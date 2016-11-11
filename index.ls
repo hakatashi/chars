@@ -88,7 +88,8 @@ class Splitter
     category = general-category @char-code
 
     # First character of category indicates large category of character.
-    if category[0] is \M
+    # Emoji_Modifiers are not categorized as a “mark," but considered as a modifier.
+    if category[0] is \M or 0x1F3FB <= @char-code <= 0x1F3FF
       @append-modifier {
         type: \combiningMark
         char: @char

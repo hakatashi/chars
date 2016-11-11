@@ -87,6 +87,15 @@ describe 'Basic Options' ->
 
       run!
 
+    It 'handles Emoji_Modifiers to be the combining mark' ->
+      assets :=
+        * '\u270a\ud83c\udffd\ud83e\udd47\u270a\ud83c\udffb'
+          <[\u270a\ud83c\udffd \ud83e\udd47 \u270a\ud83c\udffb]>
+        * '\ud83d\udd96\ud83c\udffd\ud83c\udf85\ud83c\udffd'
+          <[\ud83d\udd96\ud83c\udffd \ud83c\udf85\ud83c\udffd]>
+
+      run!
+
   describe 'IDS' ->
     It 'handles basic combining marks as combined character' ->
       assets :=
