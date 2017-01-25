@@ -1,8 +1,7 @@
 # chars
 
-[![Greenkeeper badge](https://badges.greenkeeper.io/hakatashi/chars.svg)](https://greenkeeper.io/)
-
 [![Build Status](https://travis-ci.org/hakatashi/chars.svg)](https://travis-ci.org/hakatashi/chars)
+[![Greenkeeper badge](https://badges.greenkeeper.io/hakatashi/chars.svg)](https://greenkeeper.io/)
 
 Split strings into array of characters by “Semmantically-correct” way.
 
