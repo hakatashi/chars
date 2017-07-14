@@ -88,6 +88,7 @@ Upcoming:
 * Zero-Width Joiner
 * Prepended Concatenation Marks
 * Emoji Sequence
+* Emoji Tag Sequence
 * Adeg Adeg
 * Generic virama such as Devanagari (Hard way...!)
 * Bugenese Ligature (Includes “iya” only)
