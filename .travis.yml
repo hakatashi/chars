@@ -1,7 +1,7 @@
 language: node_js
 node_js:
-  - '0.12'
-  - '4'
-  - 'node'
+  - 4
+  - 6
+  - node
 notifications:
   webhooks: http://webhook.hakatashi.com/travis
