@@ -30,7 +30,7 @@
     "chai": "^4.0.0",
     "gulp": "^3.9.0",
     "gulp-livescript": "^3.0.0",
-    "gulp-mocha": "^5.0.0",
+    "gulp-mocha": "^6.0.0",
     "livescript": "^1.4.0",
     "mocha": "^5.0.0"
   },
