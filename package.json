@@ -36,7 +36,7 @@
   },
   "dependencies": {
     "array-unique": "^0.3.2",
-    "core-js": "^2.0.3",
+    "core-js": "^3.20.3",
     "general-category": "^1.1.0",
     "xtend": "^4.0.1"
   }
